@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js">
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type ="text/babel">
+//      const e= React.createElement;
+      class LikeButton extends React.Component{
+        constructor(props){
+          super(props);
+          this.state={
+            liked: false,
+            str: "학교 ",
+            str1: "너무",
+            num : 0,
+          };
+        }
+        render(){
+          return <button type= "submit" onClick={ ()=> {if(this.state.num===1){
+             this.setState({str : "제발 집으로 "})
+           }
+           else
+           {
+             this.setState({str: this.state.str.concat(this.state.str1),num: this.state.num+1} )
+          }
+        }
+
+      }>
+          {this.state.str}
+          </button>;
+      //    return e('button',{onClick: ()=>{this.setState({liked : true})},type: 'submit' },
+      //    this.state.liked===true?'Liked':'Like');//라이크버튼
+        }
+      }
+      class LikeButton1 extends React.Component{
+        constructor(props){
+          super(props);
+          this.state={
+            liked: false,
+            str: "학교 ",
+            str1: "너무",
+            num : 0,
+          };
+        }
+        render(){
+          return <button type= "submit" onClick={ ()=> {if(this.state.num===1){
+             this.setState({str : "보내줘"})
+           }
+           else
+           {
+             this.setState({str: this.state.str.concat(this.state.str1),num: this.state.num+1} )
+          }
+        }
+
+      }>
+          {this.state.str}
+          </button>;
+      //    return e('button',{onClick: ()=>{this.setState({liked : true})},type: 'submit' },
+      //    this.state.liked===true?'Liked':'Like');//라이크버튼
+        }
+      }
+  </script>
+  <script type="text/babel">
+    ReactDOM.render(<div><LikeButton/><LikeButton1/></div>,document.querySelector('#root'));
+  </script>
+  </body>
+</html>

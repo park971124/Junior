@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <meta charset="uft-8"/>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js">
+    </script>
+  </head>
+
+  <body>
+    <div id="login"></div>
+    <script type ="text/babel">
+      class Login extends React.Component{
+        constructor(props){
+          super(props);
+          this.state={
+            id: '',
+            password: '',
+            check:0,
+            checkID:[1],
+            checkPW:[1],
+          };
+        }
+
+        onChange =(e)=>{
+          this.state.checkID.map((num)=>{
+            if(parseInt(this.state.id)===parseInt(num)){
+              this.setState({check:this.state.check++,})
+            }
+          })
+
+          this.state.checkPW.map((num)=>{
+            if(parseInt(this.state.password)===parseInt(num)){
+              this.setState({check:this.state.check++,})
+            }
+          })
+
+          if(this.state.check===2){
+            this.setState({check:0});
+          }else{
+            e.preventDefault();
+            this.setState({check:0});
+            alert('다시입력하세요.');
+          }
+
+        };
+        render(){
+          return (
+          <div>
+            <form action="a.html">
+            <div>
+            {'학   번'}
+            <input type= "text"  value ={this.state.id} onChange={(e)=>{this.setState({id: e.target.value })}}/>
+              <button onClick={this.onChange}>로그인</button>
+            </div>
+            <div>
+              {'비밀번호'}
+              <input type= "password" value ={this.state.password} onChange={(e)=>{this.setState({password: e.target.value })}}/>
+            </div>
+            </form>
+            <form action="sign_up.html">
+              <button>회원가입하기</button>
+            </form>
+          </div>
+          );
+        }
+      }
+    </script>
+
+    <script type="text/babel">
+      ReactDOM.render(<Login/>,document.querySelector('#login'));
+    </script>
+  </body>
+</html>

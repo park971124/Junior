@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js">
+    </script>
+    <title>
+      편의시설
+    </title>
+  </head>
+  <body>
+    <div id="편의시설"></div>
+    <script type="text/babel">
+      class 편의시설들 extends React.Component{
+        constructor(props){
+          super(props);
+          this.state={
+            building : [
+              {
+                index: 1,
+                name:'제1학생회관',
+                time:'11:00~19:00',
+                explanation:'1층에는 학생식당,매점 등 운영하고있고, 2층에는 학생복지를 위한 공간이 마련되어있고, 3층에는 중앙동아리실이 있는 곳입니다',
+              },{
+                index: 2,
+                name:'제2학생회관(인재개발원)',
+                time:'10:00~19:00',
+                explanation:'1층에는 학생식당,매점,카페등을 운영하고있고, 2층에는 인재개발원,Job Cafe, 3층에는 취창업공간을 운영하고있습니다.',
+              }
+            ],
+            num :0,
+          }
+        }
+        render(){
+          return (
+          <div>
+          <ul>
+            {this.state.building.map( (v)=>{return <li onClick={()=>{
+              this.setState({
+                num: v.index-1,
+              })
+            }}>{v.name}</li>}) }
+          </ul>
+          <div>
+          {this.state.building[this.state.num].time}
+          </div>
+          <div>
+          {this.state.building[this.state.num].explanation}
+          </div>
+          </div>
+          );
+        }
+      }
+    </script>
+    <script type="text/babel">
+      ReactDOM.render(<편의시설들/>,document.querySelector('#편의시설'));
+    </script>
+  </body>
+</html>

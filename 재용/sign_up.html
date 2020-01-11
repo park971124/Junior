@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <meta charset="uft-8"/>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js">
+    </script>
+  </head>
+  <body>
+
+
+    <div id="sign_up"></div>
+    <script type ="text/babel">
+      class Sign_up extends React.Component{
+        constructor(props){
+          super(props);
+          this.state={
+            check:'입력하세요',
+            insertID: '',
+            insertPW: '',
+            name: '',
+            checkID:[],
+            checkPW:[],
+            checkName:[],
+          };
+        }
+        insert =(e)=>{
+
+          if(this.state.insertID.length < 9 || this.state.insertPW.length<8){
+              if(this.state.insertID.length < 9){
+                alert('학번을 다시입력하세요!');
+              }else if(this.state.insertPW.length<8){
+                alert('비밀번호를 다시입력하세요!');
+              }
+          }
+          else{
+            this.setState({
+              checkName:this.state.name.concat(this.state.checkName),
+              checkID:this.state.checkID.concat(this.state.insertID),
+              checkPW:this.state.checkID.concat(this.state.insertPW),
+            })
+          }
+        }
+        render(){
+          return (
+          <div>
+            <form>
+              <div>
+              {'이름'}
+                <input type= "text" value={this.state.name} onChange={(e)=>{this.setState({name:e.target.value})}}/>
+              </div>
+
+              <div>
+                {'학번'}
+                <input type= "text"  value ={this.state.insertID} onChange={(e)=>{this.setState({insertID: e.target.value })}}/>
+              </div>
+
+                <div>
+                {'비밀번호'}
+                <input type= "password" value ={this.state.insertPW} onChange={(e)=>{this.setState({insertPW: e.target.value })}}/>
+              </div>
+
+              <div>
+                {'학과'}
+                <select >
+                  <option value="컴퓨터공학과">컴퓨터공학과</option>
+                  <option value="기계공학과">기계공학과</option>
+                  <option value="화학공학과">화학공학과</option>
+                </select>
+
+              </div>
+                <button onClick={this.insert}>회원가입</button>
+            </form>
+            <div>
+              {this.state.checkID}
+            </div>
+
+            <div>
+              {this.state.checkPW}
+            </div>
+
+            <div>
+              {this.state.checkName}
+            </div>
+          </div>
+          );
+        }
+      }
+      </script>
+      <script type="text/babel">
+        ReactDOM.render(<Sign_up/>,document.querySelector('#sign_up'));
+      </script>
+
+  </body>
+</html>
