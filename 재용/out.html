@@ -1,0 +1,69 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js">
+  </script>
+
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+  </script>
+
+  <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js">
+  </script>
+  <title>
+    외부사이트
+  </title>
+</head>
+
+<body>
+  <div id="외부사이트"></div>
+  <script type ="text/babel">
+    class OutPage extends React.Component{
+      constructor(props){
+        super(props);
+        this.state={
+          site: "",
+          id:'201602049',
+          name: '이재용',
+          department:'컴퓨터공학과',
+
+          siteLink:[
+            {link : 'https://naver.com',
+            siteName: '네이버',
+          },
+            {link : 'https://google.com',
+            siteName: '구글',
+          },
+          ],
+        };
+      }
+
+
+      render(){
+        return (
+        <div>  <form action="login.html">
+          <img src="CNU.jpg" width="200"/>
+            {this.state.id}{"   "}{this.state.name}{"   "}{this.state.department}
+            <button onClick={this.onClick}>로그아웃</button>
+          </form>
+
+          <form action={this.state.site}>
+            <button onClick={()=>{this.setState({site:"home.html" })}}>일정</button>
+            <button onClick={()=>{this.setState({site:"facilities.html" })}}>편의시설</button>
+            <button onClick={()=>{this.setState({site:"out.html" })}}>외부사이트</button>
+          </form>
+
+          <form action={this.state.site}>
+          {this.state.siteLink.map( (v)=>{return <button onClick={()=>{
+            this.setState({site:v.link})
+          }}>{v.siteName}</button>}) }
+          </form>
+        </div>
+        );
+      }
+    }
+  </script>
+  <script type="text/babel">
+    ReactDOM.render(<OutPage/>,document.querySelector('#외부사이트'));
+  </script>
+</body>
+</html>

@@ -20,6 +20,10 @@
         constructor(props){
           super(props);
           this.state={
+            site: "",
+            id:'201602049',
+            name: '이재용',
+            department:'컴퓨터공학과',
             building : [
               {
                 index: 1,
@@ -39,16 +43,25 @@
         render(){
           return (
           <div>
+          <form action="login.html">
+          <img src="CNU.jpg" width="200"/>
+              {this.state.id}{"   "}{this.state.name}{"   "}{this.state.department}
+              <button>로그아웃</button>
+          </form>
+          <form action={this.state.site}>
+            <button onClick={()=>{this.setState({site:"home.html" })}}>일정</button>
+            <button onClick={()=>{this.setState({site:"facilities.html" })}}>편의시설</button>
+            <button onClick={()=>{this.setState({site:"out.html" })}}>외부사이트</button>
+          </form>
           <ul>
             {this.state.building.map( (v)=>{return <li onClick={()=>{
               this.setState({
                 num: v.index-1,
               })
+
+
             }}>{v.name}</li>}) }
           </ul>
-          <div>
-          {this.state.building[this.state.num].time}
-          </div>
           <div>
           {this.state.building[this.state.num].explanation}
           </div>
