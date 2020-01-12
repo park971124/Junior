@@ -26,6 +26,15 @@
             checkID:[],
             checkPW:[],
             checkName:[],
+            department:[
+              {name:"컴퓨터공학과"},
+              {name:"기계공학과"},
+              {name:"화학공학과"},
+              {name:"화학공학과2"},
+              {name:"화학공학과3"},
+              {name:"화학공학과4"},
+            ],
+            departmentName:"",
           };
         }
         insert =(e)=>{
@@ -66,10 +75,15 @@
 
               <div>
                 {'학과'}
-                <select >
+
                   <option value="컴퓨터공학과">컴퓨터공학과</option>
-                  <option value="기계공학과">기계공학과</option>
-                  <option value="화학공학과">화학공학과</option>
+
+                <select >
+                {this.state.department.map( (v)=>{return <option onClick={()=>{
+                  this.setState({
+                    departmentName: v.name,
+                  })
+                }}>{v.name}</option>}) }
                 </select>
 
               </div>
