@@ -463,13 +463,13 @@
           points_student[i].setMap(null);
         }
         kakao.maps.event.removeListener(points_student[0], 'click', function() {
-          infowindow_1nd_student.open(map, points_student[0]);
+          infowindow_1nd_student.close(map, points_student[0]);
         });
         kakao.maps.event.removeListener(points_student[1], 'click', function() {
-          infowindow_2nd_student.open(map, points_student[1]);
+          infowindow_2nd_student.close(map, points_student[1]);
         });
         kakao.maps.event.removeListener(points_student[2], 'click', function() {
-          infowindow_3nd_student.open(map, points_student[2]);
+          infowindow_3nd_student.close(map, points_student[2]);
         });
       }
 
@@ -501,19 +501,19 @@
           points_cafe[i].setMap(null);
         }
         kakao.maps.event.removeListener(points_cafe[0], 'click', function() {
-          infowindow_cafe_global_academy.open(map, points_cafe[0]);
+          infowindow_cafe_global_academy.close(map, points_cafe[0]);
         });
         kakao.maps.event.removeListener(points_cafe[1], 'click', function() {
-          infowindow_cafe_1nd_student_youngtop.open(map, points_cafe[1]);
+          infowindow_cafe_1nd_student_youngtop.close(map, points_cafe[1]);
         });
         kakao.maps.event.removeListener(points_cafe[2], 'click', function() {
-          infowindow_cafe_2nd_student.open(map, points_cafe[2]);
+          infowindow_cafe_2nd_student.close(map, points_cafe[2]);
         });
         kakao.maps.event.removeListener(points_cafe[3], 'click', function() {
-          infowindow_cafe_library.open(map, points_cafe[3]);
+          infowindow_cafe_library.close(map, points_cafe[3]);
         });
         kakao.maps.event.removeListener(points_cafe[4], 'click', function() {
-          infowindow_cafe_3nd_student.open(map, points_cafe[4]);
+          infowindow_cafe_3nd_student.close(map, points_cafe[4]);
         });
       }
 
@@ -542,16 +542,16 @@
           points_store[i].setMap(null);
         }
         kakao.maps.event.removeListener(points_store[0], 'click', function() {
-          infowindow_store_1nd_student.open(map, points_store[0]);
+          infowindow_store_1nd_student.close(map, points_store[0]);
         });
         kakao.maps.event.removeListener(points_store[1], 'click', function() {
-          infowindow_store_2nd_student.open(map, points_store[1]);
+          infowindow_store_2nd_student.close(map, points_store[1]);
         });
         kakao.maps.event.removeListener(points_store[2], 'click', function() {
-          infowindow_store_3nd_student.open(map, points_store[2]);
+          infowindow_store_3nd_student.close(map, points_store[2]);
         });
         kakao.maps.event.removeListener(points_store[3], 'click', function() {
-          infowindow_store_library.open(map, points_store[3]);
+          infowindow_store_library.close(map, points_store[3]);
         });
       }
 
@@ -588,26 +588,26 @@
         for (var i = 0; i < points_atm_hana.length; i++) {
           points_atm_hana[i].setMap(null);
           kakao.maps.event.removeListener(points_atm_hana[i], 'click', function() {
-            infowindow_atm_hana.open(map, points_atm_hana[i]);
+            infowindow_atm_hana.close(map, points_atm_hana[i]);
           });
         };
         for (var i = 0; i < points_atm_kb.length; i++) {
           points_atm_kb[i].setMap(null);
           kakao.maps.event.removeListener(points_atm_kb[i], 'click', function() {
-            infowindow_atm_kb.open(map, points_atm_kb[i]);
+            infowindow_atm_kb.close(map, points_atm_kb[i]);
           });
         };
         point_atm_sh.setMap(null);
         kakao.maps.event.removeListener(point_atm_sh, 'click', function() {
-          infowindow_atm_sh.open(map, points_store[i]);
+          infowindow_atm_sh.close(map, points_store[i]);
         });
         point_atm_nh.setMap(null);
         kakao.maps.event.removeListener(point_atm_nh, 'click', function() {
-          infowindow_atm_nh.open(map, point_atm_nh);
+          infowindow_atm_nh.close(map, point_atm_nh);
         });
         point_atm_post.setMap(null);
         kakao.maps.event.removeListener(point_atm_post, 'click', function() {
-          infowindow_atm_post.open(map, point_atm_post);
+          infowindow_atm_post.close(map, point_atm_post);
         });
       }
 
@@ -626,7 +626,7 @@
         for (var i = 0; i < points_bank.length; i++) {
           points_bank[i].setMap(null);
           kakao.maps.event.removeListener(points_bank[i], 'click', function() {
-            infowindow_bank.open(map, points_bank[i]);
+            infowindow_bank.close(map, points_bank[i]);
           });
         };
       }
@@ -643,7 +643,7 @@
       function bookstore_off() {
         point_bookstore.setMap(null);
         kakao.maps.event.removeListener(point_bookstore, 'click', function() {
-          infowindow_bookstore.open(map, point_bookstore);
+          infowindow_bookstore.close(map, point_bookstore);
         });
       }
 
@@ -659,7 +659,7 @@
       function glasses_off() {
         point_glasses.setMap(null);
         kakao.maps.event.removeListener(point_glasses, 'click', function() {
-          infowindow_glasses.open(map, point_glasses);
+          infowindow_glasses.close(map, point_glasses);
         });
       }
 
@@ -675,7 +675,7 @@
       function post_off() {
         point_post.setMap(null);
         kakao.maps.event.removeListener(point_post, 'click', function() {
-          infowindow_post.open(map, point_post);
+          infowindow_post.close(map, point_post);
         });
       }
 
@@ -691,7 +691,7 @@
       function pharm_off() {
         point_pharm.setMap(null);
         kakao.maps.event.removeListener(point_pharm, 'click', function() {
-          infowindow_pharm.open(map, point_pharm);
+          infowindow_pharm.close(map, point_pharm);
         });
       }
 
@@ -707,7 +707,7 @@
       function library_off() {
         point_library.setMap(null);
         kakao.maps.event.removeListener(point_library, 'click', function() {
-          infowindow_library.open(map, point_library);
+          infowindow_library.close(map, point_library);
         });
       }
 
@@ -723,7 +723,7 @@
       function soccer_off() {
         point_soccer.setMap(null);
         kakao.maps.event.removeListener(point_soccer, 'click', function() {
-          infowindow_soccer.open(map, point_soccer);
+          infowindow_soccer.close(map, point_soccer);
         });
       }
 
@@ -739,7 +739,7 @@
       function stationery_off() {
         point_stationery.setMap(null);
         kakao.maps.event.removeListener(point_stationery, 'click', function() {
-          infowindow_stationery.open(map, point_stationery);
+          infowindow_stationery.close(map, point_stationery);
         });
       }
 
@@ -755,7 +755,7 @@
       function health_off() {
         point_health.setMap(null);
         kakao.maps.event.removeListener(point_health, 'click', function() {
-          infowindow_health.open(map, point_health);
+          infowindow_health.close(map, point_health);
         });
       }
 
@@ -771,7 +771,7 @@
       function recruit_off() {
         point_recruit.setMap(null);
         kakao.maps.event.removeListener(point_recruit, 'click', function() {
-          infowindow_recruit.open(map, point_recruit);
+          infowindow_recruit.close(map, point_recruit);
         });
       }
     </script>
