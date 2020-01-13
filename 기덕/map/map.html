@@ -9,61 +9,6 @@
 
   <body>
     <div id="map" style="width:100%;height:350px;"></div>
-    <div>
-      <button type="button" name="student" onclick="student_on()">학생회관</button>
-      <button type="button" name="student" onclick="student_off()">학생회관</button>
-
-      <button type="button" name="cafe" onclick="cafe_on()">카페</button>
-      <button type="button" name="cafe" onclick="cafe_off()">카페</button>
-
-      <button type="button" name="store" onclick="store_on()">매점</button>
-      <button type="button" name="store" onclick="store_off()">매점</button>
-      <div id="atm">
-        <button type="button" name="atm_hana" onclick="atm_hana_on()">하나은행 ATM</button>
-        <button type="button" name="atm_hana" onclick="atm_hana_off()">하나은행 ATM</button>
-
-        <button type="button" name="atm_kb" onclick="atm_kb_on()">국민은행 ATM</button>
-        <button type="button" name="atm_kb" onclick="atm_kb_off()">국민은행 ATM</button>
-
-        <button type="button" name="atm_sh" onclick="atm_sh_on()">신협은행 ATM</button>
-        <button type="button" name="atm_sh" onclick="atm_sh_off()">신협은행 ATM</button>
-
-        <button type="button" name="atm_nh" onclick="atm_nh_on()">농협은행 ATM</button>
-        <button type="button" name="atm_nh" onclick="atm_nh_off()">농협은행 ATM</button>
-
-        <button type="button" name="atm_post" onclick="atm_post_on()">우체국 ATM</button>
-        <button type="button" name="atm_post" onclick="atm_post_off()">우체국 ATM</button>
-
-      </div>
-      <div id="facility">
-        <button type="button" name="library" onclick="bookstore_on()">서점</button>
-        <button type="button" name="library" onclick="bookstore_off()">서점</button>
-
-        <button type="button" name="glasses" onclick="glasses_on()">안경점</button>
-        <button type="button" name="glasses" onclick="glasses_off()">안경점</button>
-
-        <button type="button" name="post" onclick="post_on()">우체국</button>
-        <button type="button" name="post" onclick="post_off()">우체국</button>
-
-        <button type="button" name="pharmacy" onclick="pharm_on()">약국</button>
-        <button type="button" name="pharmacy" onclick="pharm_off()">약국</button>
-
-        <button type="button" name="library" onclick="library_on()">도서관</button>
-        <button type="button" name="library" onclick="library_off()">도서관</button>
-
-        <button type="button" name="soccer" onclick="soccer_on()">풋살장</button>
-        <button type="button" name="soccer" onclick="soccer_off()">풋살장</button>
-
-        <button type="button" name="stationery" onclick="stationery_on()">문구점</button>
-        <button type="button" name="stationery" onclick="stationery_off()">문구점</button>
-
-        <button type="button" name="health" onclick="health_on()">보건진료소</button>
-        <button type="button" name="health" onclick="health_off()">보건진료소</button>
-
-        <button type="button" name="recruit" onclick="recruit_on()">인재개발원</button>
-        <button type="button" name="recruit" onclick="recruit_off()">인재개발원</button>
-      </div>
-    </div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a1cbb93bd2b9ba4f3cac09075e5ddca0
 "></script>
     <script>
@@ -368,7 +313,11 @@
         iwContent_store_2nd_student = '<div style="padding:5px;">&lt;매점_2학생회관&gt;<br>평일 08:30~17:30</div>',
         iwContent_store_3nd_student = '<div style="padding:5px;">&lt;매점_3학생회관&gt;<br>평일 11:00~18:00</div>',
         iwContent_store_library = '<div style="padding:5px;">&lt;매점_도서관&gt;<br>평일 07:00~22:00<br>주말 10:00~17:00</div>',
-        iwContent_atm = '<div style="padding:5px;">&lt;ATM&gt;<br>08:00~24:00</div>',
+        iwContent_atm_hana = '<div style="padding:5px;">&lt;ATM_하나&gt;</div>',
+        iwContent_atm_kb = '<div style="padding:5px;">&lt;ATM_국민&gt;</div>',
+        iwContent_atm_sh = '<div style="padding:5px;">&lt;ATM_신협&gt;</div>',
+        iwContent_atm_nh = '<div style="padding:5px;">&lt;ATM_농협&gt;</div>',
+        iwContent_atm_post = '<div style="padding:5px;">&lt;ATM_우체국&gt;</div>',
         iwContent_bank = '<div style="padding:5px;">&lt;은행&gt;<br>평일 09:00~16:00</div>',
         iwContent_bookstore = '<div style="padding:5px;">&lt;서점&gt;<br>평일 10:00~17:00</div>',
         iwContent_glasses = '<div style="padding:5px;">&lt;안경점&gt;<br>평일 09:00~18:30<br>주말 11:00~16:00</div > ',
@@ -431,8 +380,24 @@
           removable: iwRemoveable
         });
 
-      var infowindow_atm = new kakao.maps.InfoWindow({
-          content: iwContent_atm,
+      var infowindow_atm_hana = new kakao.maps.InfoWindow({
+          content: iwContent_atm_hana,
+          removable: iwRemoveable
+        }),
+        infowindow_atm_kb = new kakao.maps.InfoWindow({
+          content: iwContent_atm_kb,
+          removable: iwRemoveable
+        }),
+        infowindow_atm_sh = new kakao.maps.InfoWindow({
+          content: iwContent_atm_sh,
+          removable: iwRemoveable
+        }),
+        infowindow_atm_nh = new kakao.maps.InfoWindow({
+          content: iwContent_atm_nh,
+          removable: iwRemoveable
+        }),
+        infowindow_atm_post = new kakao.maps.InfoWindow({
+          content: iwContent_atm_post,
           removable: iwRemoveable
         }),
         infowindow_bank = new kakao.maps.InfoWindow({
@@ -590,91 +555,59 @@
         });
       }
 
-      function atm_hana_on() {
+      function atm_on() {
         map.panTo(center);
 
         for (var i = 0; i < points_atm_hana.length; i++) {
           points_atm_hana[i].setMap(map);
           kakao.maps.event.addListener(points_atm_hana[i], 'click', function() {
-            infowindow_atm.open(map, points_atm_hana[i]);
+            infowindow_atm_hana.open(map, points_atm_hana[i]);
           });
         };
-      }
-
-      function atm_hana_off() {
-        for (var i = 0; i < points_atm_hana.length; i++) {
-          points_atm_hana[i].setMap(null);
-          kakao.maps.event.removeListener(points_atm_hana[i], 'click', function() {
-            infowindow_atm.open(map, points_atm_hana[i]);
-          });
-        };
-      }
-
-      function atm_kb_on() {
-        map.panTo(center);
-
         for (var i = 0; i < points_atm_kb.length; i++) {
           points_atm_kb[i].setMap(map);
           kakao.maps.event.removeListener(points_atm_kb[i], 'click', function() {
-            infowindow_atm.open(map, points_atm_kb[i]);
+            infowindow_atm_kb.open(map, points_atm_kb[i]);
           });
         };
+        point_atm_sh.setMap(map);
+        kakao.maps.event.addListener(point_atm_sh, 'click', function() {
+          infowindow_atm_sh.open(map, points_store[i]);
+        });
+        point_atm_nh.setMap(map);
+        kakao.maps.event.addListener(point_atm_nh, 'click', function() {
+          infowindow_atm_nh.open(map, point_atm_nh);
+        });
+        point_atm_post.setMap(map);
+        kakao.maps.event.addListener(point_atm_post, 'click', function() {
+          infowindow_atm_post.open(map, point_atm_post);
+        });
       }
 
-      function atm_kb_off() {
+      function atm_off() {
+        for (var i = 0; i < points_atm_hana.length; i++) {
+          points_atm_hana[i].setMap(null);
+          kakao.maps.event.removeListener(points_atm_hana[i], 'click', function() {
+            infowindow_atm_hana.open(map, points_atm_hana[i]);
+          });
+        };
         for (var i = 0; i < points_atm_kb.length; i++) {
           points_atm_kb[i].setMap(null);
           kakao.maps.event.removeListener(points_atm_kb[i], 'click', function() {
-            infowindow_atm.open(map, points_atm_kb[i]);
+            infowindow_atm_kb.open(map, points_atm_kb[i]);
           });
         };
-      }
-
-      function atm_sh_on() {
-        map.panTo(center);
-
-        point_atm_sh.setMap(map);
-        kakao.maps.event.addListener(point_atm_sh, 'click', function() {
-          infowindow_atm.open(map, points_store[i]);
-        });
-      }
-
-      function atm_sh_off() {
         point_atm_sh.setMap(null);
         kakao.maps.event.removeListener(point_atm_sh, 'click', function() {
-          infowindow_atm.open(map, points_store[i]);
+          infowindow_atm_sh.open(map, points_store[i]);
         });
-      }
-
-      function atm_nh_on() {
-        map.panTo(center);
-
-        point_atm_nh.setMap(map);
-        kakao.maps.event.addListener(point_atm_nh, 'click', function() {
-          infowindow_atm.open(map, point_atm_nh);
-        });
-      }
-
-      function atm_nh_off() {
         point_atm_nh.setMap(null);
         kakao.maps.event.removeListener(point_atm_nh, 'click', function() {
-          infowindow_atm.open(map, point_atm_nh);
+          infowindow_atm_nh.open(map, point_atm_nh);
         });
-      }
-
-      function atm_post_on() {
-        map.panTo(center);
-
-        point_atm_post.setMap(map);
-        kakao.maps.event.addListener(point_atm_post, 'click', function() {
-          infowindow_atm.open(map, point_atm_post);
-        });
-      }
-
-      function atm_post_off() {
         point_atm_post.setMap(null);
         kakao.maps.event.removeListener(point_atm_post, 'click', function() {
-          infowindow_atm.open(map, point_atm_post);
+          infowindow_atm_post.open(map, point_atm_post);
         });
       }
 
