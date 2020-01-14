@@ -9,9 +9,66 @@
 
   <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js">
   </script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <title>
     외부사이트
   </title>
+  <script src="jquery-3.4.1.min.js"></script>
+  <style media="screen">
+    li{
+      list-style:none;
+    }
+    body {
+    	background-image: url(https://s3.orbi.kr/data/file/united2/9a2dd8fa-052e-4a3b-aecf-73f47a1600dd1.png);
+    	background-size: cover;
+    	background-repeat: no-repeat;
+    	font-weight: bold;
+    }
+
+    .wrap {
+    	position: relative;
+    	top: 50%;
+    	left: 50%;
+    	margin-top: 0px;
+    	margin-left: -89px;
+    	text-align: center;
+    }
+
+    a {
+    	-webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    	display: block;
+    	margin:  2%;
+    	max-width: 100%;
+      height: 15%;
+    	text-decoration: none;
+    	border-radius: 4px;
+    	padding: 30% 10%;
+    	font-size: 20px;
+    }
+
+    a.button {
+      background-color: rgba(30, 22, 54, 0.4);
+    	color: rgba(255, 255, 255, 100%);
+    	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    }
+
+    a.button:hover {
+       text-decoration:none;
+    	color: rgba(255, 255, 255, 0.85);
+    	box-shadow: rgba(30, 22, 54, 0.7) 0 20px 70px 80px inset;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -27,11 +84,32 @@
           department:'컴퓨터공학과',
 
           siteLink:[
-            {link : 'https://naver.com',
-            siteName: '네이버',
+            {link : 'http://www.kosaf.go.kr/',
+            siteName: '한국장학재단',
           },
-            {link : 'https://google.com',
-            siteName: '구글',
+            {link : 'https://everytime.kr/',
+            siteName: '에브리타임',
+          },
+          {link : 'http://www.all-con.co.kr/',
+          siteName: '올콘(공모전사이트)',
+          },
+          {link : 'https://cic.cnu.ac.kr/cic/service/365.do',
+          siteName: 'office365',
+          },
+          {link : 'http://portal.cnu.ac.kr/',
+          siteName: '충남대학교포털',
+          },
+          {link : 'http://cuvic.cnu.ac.kr/',
+          siteName: '충남대학교 웹메일',
+          },
+          {link : 'http://library.cnu.ac.kr/',
+          siteName: '충남대학교 도서관',
+          },
+          {link : 'http://e-learn.cnu.ac.kr/main/MainView.dunet',
+          siteName: '충남대학교 이러닝',
+          },
+          {link : 'http://plus.cnu.ac.kr/html/kr/',
+          siteName: '충남대학교 홈페이지',
           },
           ],
         };
@@ -41,7 +119,7 @@
       render(){
         return (
         <div>  <form action="login.html">
-          <img src="CNU.jpg" width="200"/>
+          <img src="CNU.jpg" width="100px" height="100px"/>
             {this.state.id}{"   "}{this.state.name}{"   "}{this.state.department}
             <button onClick={this.onClick}>로그아웃</button>
           </form>
@@ -53,9 +131,11 @@
           </form>
 
           <form action={this.state.site}>
-          {this.state.siteLink.map( (v)=>{return <button onClick={()=>{
+          <ul class="container">
+          {this.state.siteLink.map( (v)=>{return <li type="button" class ="col-md-4 span4" onClick={()=>{
             this.setState({site:v.link})
-          }}>{v.siteName}</button>}) }
+          }}><a id="링크" href={this.state.site} class="button">{v.siteName}</a></li>}) }
+          </ul>
           </form>
         </div>
         );
