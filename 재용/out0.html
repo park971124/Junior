@@ -1,0 +1,159 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js">
+  </script>
+
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+  </script>
+
+  <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js">
+  </script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <title>
+    외부사이트
+  </title>
+  <script src="jquery-3.4.1.min.js"></script>
+  <style media="screen">
+    li{
+      list-style:none;
+    }
+    body {
+    	background-image: url(https://s3.orbi.kr/data/file/united2/9a2dd8fa-052e-4a3b-aecf-73f47a1600dd1.png);
+    	background-size: cover;
+    	background-repeat: repeat;
+    	font-weight: bold;
+    }
+
+    a{
+    	display: block;
+    	margin:  2%;
+    	max-width: 100%;
+      height: 15%;
+    	text-decoration: none;
+    	border-radius: 10px;
+    	padding: 20% 15%;
+    	font-size: 20px;
+
+      background:rgba(1, 73, 157, 70);
+      color:rgba(255, 255,255, 1);
+      opacity: 80%;
+    }
+    a:hover{
+
+      background:rgba(255, 255,255, 1);
+      color:rgba(1, 73, 157, 70);
+      text-decoration: none;
+      opacity: 0.8;
+    }
+    a:before,a:after{
+
+      text-decoration: none;
+      content:'';
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      background: rgba(1, 73, 157, 70);
+      transition:400ms ease all;
+    }
+    a:after{
+      right:inherit;
+      top:inherit;
+      left:0;
+      bottom:0;
+    }
+    a:hover:before,a:hover:after{
+      width:100%;
+      transition:800ms ease all;
+      text-decoration:none;
+      color: rgba(255, 255, 255, 1);
+      box-shadow: rgba(1, 73, 157,70) 0px 0px 0px 120px inset;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="외부사이트"></div>
+  <script type ="text/babel">
+    class OutPage extends React.Component{
+      constructor(props){
+        super(props);
+        this.state={
+          site: "",
+          id:'201602049',
+          name: '이재용',
+          department:'컴퓨터공학과',
+
+          siteLink:[
+            {link : 'http://www.kosaf.go.kr/',
+            siteName: '한국장학재단',
+          },
+            {link : 'https://everytime.kr/',
+            siteName: '에브리타임',
+          },
+          {link : 'http://portal.cnu.ac.kr/',
+          siteName: '충남대학교포털',
+          },
+          {link : 'http://cuvic.cnu.ac.kr/',
+          siteName: '충남대학교 웹메일',
+          },
+          {link : 'http://library.cnu.ac.kr/',
+          siteName: '충남대학교 도서관',
+          },
+          {link : 'http://e-learn.cnu.ac.kr/main/MainView.dunet',
+          siteName: '충남대학교 이러닝',
+          },
+          {link : 'http://plus.cnu.ac.kr/html/kr/',
+          siteName: '충남대학교 홈페이지',
+          },
+          {link : 'http://www.all-con.co.kr/',
+          siteName: 'Allcon(공모전사이트)',
+          },
+          {link : 'https://cic.cnu.ac.kr/cic/service/365.do',
+          siteName: 'office365',
+          },
+          ],
+        };
+      }
+
+
+      render(){
+        return (
+        <div>  <form action="login.html">
+          <img src="CNU.jpg" width="100px" height="100px"/>
+            {this.state.id}{"   "}{this.state.name}{"   "}{this.state.department}
+            <button onClick={this.onClick}>로그아웃</button>
+          </form>
+
+          <form action={this.state.site}>
+            <button onClick={()=>{this.setState({site:"home.html" })}}>일정</button>
+            <button onClick={()=>{this.setState({site:"facilities.html" })}}>편의시설</button>
+            <button onClick={()=>{this.setState({site:"out.html" })}}>외부사이트</button>
+          </form>
+
+          <form action={this.state.site}>
+          <ul class="container">
+          {this.state.siteLink.map( (v)=>{return <li type="button" class ="col-md-4 span4" onClick={()=>{
+            this.setState({site:v.link})
+          }}><a id="링크" href={this.state.site} class="button">{v.siteName}</a></li>}) }
+          </ul>
+          </form>
+        </div>
+        );
+      }
+    }
+  </script>
+  <script type="text/babel">
+    ReactDOM.render(<OutPage/>,document.querySelector('#외부사이트'));
+  </script>
+</body>
+</html>
