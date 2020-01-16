@@ -3,6 +3,9 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var mysql = require('mysql');
 var app = express();
+var app2 = express();
+
+app.use(express.static(__dirname + "/views/FullCalendar-Example-master"));
 const connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
@@ -15,9 +18,9 @@ var sql = 'INSERT INTO admin (name,number,selector,password) VALUES(?,?,?,?)';
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 app.set('view engine','ejs');
-app.set('views','./views');
-app.use(express.static(__dirname + '/'));
+app2.set('view engine','ejs');
 
+app2.set('FullCalendar-Example-master','/FullCalendar-Example-master');
 app.get('/naver',function(req,res){
   res.writeHead(202,{"Content-Type":"text/html; charset=utf-8" });
   fs.createReadStream("./naver.html").pipe(res);
@@ -47,13 +50,16 @@ app.post('/form_receive',function(req,res){
   res.send(`회원가입되었습니다!!
             <a href ="/">돌아가기 </a>`);
 })
-app.post('/successlogin',function(req,res){
-  var number = req.body.number1;
-  var password = req.body.passwd;
-  var selector1;
-  var sql2 = 'SELECT * FROM admin';
   var name;
+  var selector1;
+  var number;
+  var password;
+app.post('/api',function(req,res){
+  number = req.body.number1;
+  password = req.body.passwd;
+  var sql2 = 'SELECT * FROM admin';
   connection.query(sql2,'utf8',function(err,row,field){
+
     if(err) throw err;
     else{
       var check;
@@ -61,6 +67,7 @@ app.post('/successlogin',function(req,res){
         if(number == row[i].number && password == row[i].password){
           name = row[i].name;
           selector1 = row[i].selector;
+          number = row[i].number;
           check = 1;
           break;
         }else{check = 2;}
@@ -68,10 +75,13 @@ app.post('/successlogin',function(req,res){
       if(check === 1){
         console.log(selector1);
         console.log(number);
-        res.render('a',{
+        console.log(password);
+        console.log(name);
+        res.render('index',{
           name : name,
-          number : parseInt(number),
+          number : number,
           selector : selector1,
+          password1 : password,
         });
         }
         else{
@@ -80,14 +90,45 @@ app.post('/successlogin',function(req,res){
         }
     }
   })
-
+});
+app.post('/successlogin',function(req,res){
+  var name = req.body.name1;
+  console.log(name);
+  var selector = req.body.selector;
+  console.log(selector);
+  var number = req.body.number1;
+  console.log(number);
+  var password = req.body.passwd;
+  console.log(password);
+  res.render('a',{
+    name : name,
+    number : number,
+    selector : selector1,
+    password1 : password,
+  })
+})
+app.post('/out',function(req,res){
+  var name = req.body.name1;
+  console.log(name);
+  var selector = req.body.selector;
+  console.log(selector);
+  var number = req.body.number1;
+  console.log(number);
+  var password = req.body.passwd;
+  console.log(password);
+  res.render('b',{
+    name : name,
+    number : number,
+    selector : selector1,
+    password1 : password,
+  })
 })
 app.locals.pretty = true;
-
 app.post('/html',function(req,res){
   res.writeHead(202,{"Content-Type":"text/html; charset=utf-8" });
   fs.createReadStream("./회원가입.html").pipe(res);
 })
+
 app.listen(60,function(){
   console.log('Connected 60 port!');
 });
