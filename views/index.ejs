@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>학사일정</title>
+    <link rel="icon" type="image/jpg" href="https://i.imgur.com/BqiTLfR.jpg"/>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" href="vendor/css/fullcalendar.min.css" />
+    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href='vendor/css/select2.min.css' />
+    <link rel="stylesheet" href='vendor/css/bootstrap-datetimepicker.min.css' />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="css/main.css">
+    <style media="screen">
+    @font-face {
+        font-family: "ON-IGothic";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eleven@1.0/ON-IGothic.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      #logo{
+        margin-left: 20px;
+      }
+    body{
+      padding-top: 5px;
+      font-family: "ON-IGothic";
+      font-size: medium;
+      font-weight: bold;
+    }
+    .btn{
+      width : 97%;
+      margin-left : 1px;
+      margin-bottom: 5px;
+      font-size: large;
+    }
+    img{
+      margin-bottom: 20px;
+    }
+    .logout {
+     background-color: rgba(255, 255, 255, 255);
+     border: none;
+     color: rgba(1, 73, 157, 70);
+     cursor: pointer;
+     display: inline-block;
+     font-size: 2em;
+     font-size: 15px;
+     line-height: 1em;
+     margin: 10px 20px;
+     outline: none;
+     padding: 5px 5px 5px;
+     position: relative;
+     text-transform: uppercase;
+     font-weight: 700;
+   }
+   .logout:before,
+   .logout:after {
+     border-color: transparent;
+     -webkit-transition: all 0.25s;
+     transition: all 0.25s;
+     border-style: solid;
+     border-width: 0;
+     content: "";
+     height: 24px;
+     position: absolute;
+     width: 24px;
+   }
+   .logout:before {
+     border-color: rgba(1, 73, 157, 70);
+     border-right-width: 2px;
+     border-top-width: 2px;
+     right: -5px;
+     top: -5px;
+   }
+   .logout:after {
+     border-bottom-width: 2px;
+     border-color: rgba(1, 73, 157, 70);
+     border-left-width: 2px;
+     bottom: -5px;
+     left: -5px;
+   }
+   .logout:hover,
+   .logout.hover {
+     color: rgba(255, 255, 255, 255);
+     background-color: rgba(1, 73, 157, 70);
+   }
+   .logout:hover:before,
+   .logout.hover:before,
+   .logout:hover:after,
+   .logout.hover:after {
+     height: 100%;
+     width: 100%;
+   }
+   #log{
+       border-radius: 4px;
+      background-color:#41b5d8;
+      color:black;
+   }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+          <div id ="infor">
+          </div>
+          <div id="gosite">
+          </div>
+        </div>
+        <!-- 일자 클릭시 메뉴오픈 -->
+        <div id="contextMenu" class="dropdown clearfix">
+            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+                style="display:block;position:static;margin-bottom:5px;">
+                <li><a tabindex="-1" href="#">일정추가</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+            </ul>
+        </div>
+        <div class="row">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">필터</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-lg-6">
+                <label for="calendar_view">등록자별</label>
+                <div class="input-group">
+                  <label class="checkbox-inline"><input class='filter' type="checkbox" value="충남대"
+                    checked>충남대</label>
+                    <label class="checkbox-inline"><input class='filter' type="checkbox" value="한국장학재단"
+                      checked>한국장학재단</label>
+                      <label class="checkbox-inline"><input class='filter' type="checkbox" value= <%-JSON.stringify(name)%>
+                        checked> <%-JSON.stringify(name)%> </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="wrapper">
+                  <div id="loading"></div>
+                  <div id="calendar"></div>
+                </div>
+        </div>
+        <!-- 일정 추가 MODAL -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-title">일정명</label>
+                                <input class="inputModal" type="text" name="edit-title" id="edit-title"
+                                    required="required" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-start">시작</label>
+                                <input class="inputModal" type="text" name="edit-start" id="edit-start" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-end">끝</label>
+                                <input class="inputModal" type="text" name="edit-end" id="edit-end" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-type">구분</label>
+                                <select class="inputModal" type="text" name="edit-type" id="edit-type">
+                                    <option value="일정추가">일정 추가</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-desc">설명</label>
+                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
+                                    id="edit-desc"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer modalBtnContainer-addEvent">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-primary" id="save-event">저장</button>
+                    </div>
+                    <div class="modal-footer modalBtnContainer-modifyEvent">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
+                        <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        <!-- /.filter panel -->
+    </div>
+    <!-- /.container -->
+    <script type="text/babel">
+    class Gosite extends React.Component{
+      state = {
+        site : "",
+      }
+      render(){
+        return(
+        <div>
+        <form action={this.state.site} method="post">
+        <input type = "hidden" name="number1" id="number" value="<%-JSON.stringify(number)%>"></input>
+        <input type = "hidden" name="passwd" id="passwd"value=<%-JSON.stringify(password1)%>></input>
+        <input type = "hidden" name="selector" id="selector" value=<%-JSON.stringify(selector)%>></input>
+        <input type = "hidden" name="name1"value=<%-JSON.stringify(name)%>></input>
+          <div className="col-md-4">
+          <button className = "btn btn-info"onClick={(e)=>{e.preventDefault()}}>일정</button>
+          </div>
+            <div className="col-md-4">
+          <button className = "btn btn-info" onClick={()=>{this.setState({site : '/successlogin'})}}>편의시설</button>
+            </div>
+            <div className="col-md-4">
+          <button className = "btn btn-info" onClick={()=>{this.setState({site:"/out" })}}>외부사이트</button>
+            </div>
+        </form>
+        </div>
+      );
+      }
+    }
+    class Ace extends React.Component{
+      constructor(props){
+        super(props);
+        this.state = {
+          id: <%-JSON.stringify(number)%>,
+          name: <%-JSON.stringify(name)%>,
+          department:<%-JSON.stringify(selector)%>,
+        }
+      }
+      render(){
+        return(
+          <React.Fragment>
+          <form action="/">
+          <div className="row">
+          <div className="col-md-6">
+          <img id="logo"src="https://computer.cnu.ac.kr/_res/computer/img/common/img-symbol01.png" width="100px" height="100px"/>
+          </div>
+          <div className="col-md-4 pull-right">
+              {this.state.id}{"   "} <span id="name1">{this.state.name}</span>{"   "}{this.state.department}
+              <button id="log" className="logout">로그아웃</button>
+          </div>
+          </div>
+          </form>
+          </React.Fragment>
+
+        )
+      }
+    }
+    </script>
+    <script type="text/babel">
+    ReactDOM.render(<Gosite />,document.getElementById('gosite'));
+    ReactDOM.render(<Ace />,document.getElementById('infor'));
+    </script>
+    <script src="vendor/js/jquery.min.js"></script>
+    <script src="vendor/js/bootstrap.min.js"></script>
+    <script src="vendor/js/moment.min.js"></script>
+    <script src="vendor/js/fullcalendar.min.js"></script>
+    <script src="vendor/js/ko.js"></script>
+    <script src="vendor/js/select2.min.js"></script>
+    <script src="vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/addEvent.js"></script>
+    <script src="js/editEvent.js"></script>
+    <script src="js/etcSetting.js"></script>
+</body>
+
+</html>

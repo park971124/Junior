@@ -1,0 +1,256 @@
+
+
+<html>
+  <head>
+    <meta charset="uft-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/babel-standalone@6/babel.min.js"
+    ></script>
+
+    <title>충남대 알쓸신잡</title>
+    <link rel="icon" type="image/jpg" href="https://i.imgur.com/BqiTLfR.jpg" />
+
+    <style media="screen">
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      input,
+      button {
+        outline: medium;
+        border: medium;
+      }
+      .cont {
+        position: relative;
+        height: 100%;
+        background-image: url("http://plus.cnu.ac.kr/Upl/_board/sub07_0703/sub07_0703_0_1578902542.jpg");
+        background-size: cover;
+        overflow: auto;
+      }
+      .demo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -15rem;
+        margin-top: -26.5rem;
+        width: 30rem;
+        height: 53rem;
+      }
+      .login {
+        position: relative;
+        height: 90%;
+        background: transparent;
+      }
+      .login__form {
+        position: absolute;
+        top: 40%;
+        left: 0;
+        width: 100%;
+        height: 60%;
+        padding: 1.5rem 2.5rem;
+        text-align: center;
+      }
+      .login__row {
+        height: 5rem;
+        padding-top: 1rem;
+      }
+      .login__input {
+        display: inline-block;
+        width: 25rem;
+        height: 100%;
+        padding-left: 1.5rem;
+        font-size: 1.5rem;
+        background-color: white;
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        opacity: 50%;
+        border-radius: 4px;
+        size: auto;
+      }
+
+      .login__submit {
+        position: relative;
+        width: 100%;
+        height: 4rem;
+        margin: 2rem 0 0.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        background: #3374ff;
+        font-size: 1.5rem;
+        border-radius: 3rem;
+        cursor: pointer;
+        opacity: 85%;
+        font-weight: bold;
+      }
+
+      .login__sign {
+        position: relative;
+        width: 100%;
+        height: 4rem;
+        margin: 0.5rem 0 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        background: #3374ff;
+        font-size: 1.5rem;
+        border-radius: 3rem;
+        cursor: pointer;
+        opacity: 70%;
+        font-weight: bold;
+      }
+      .login__submit:hover {
+        position: relative;
+        width: 100%;
+        height: 4rem;
+        margin: 2rem 0 0.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        background: #3374ff;
+        font-size: 1.5rem;
+        border-radius: 3rem;
+        cursor: pointer;
+        box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+      }
+      .login__sign:hover {
+        position: relative;
+        width: 100%;
+        height: 4rem;
+        margin: 0.5rem 0 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        background: #3374ff;
+        font-size: 1.5rem;
+        border-radius: 3rem;
+        cursor: pointer;
+        box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+      }
+
+      #logo {
+        display: block;
+        margin: 0 auto;
+        padding: 10;
+        width: 120;
+        height: 120;
+      }
+      #letter {
+        display: block;
+        margin: 0 auto;
+      }
+      #form {
+        height: 288;
+      }
+      #project{
+            font-size: xx-large;
+            font-family:sans-serif;
+            margin:8;
+            font-weight: 900;
+            color:#3374ff;
+            text-align:center;
+          }
+        </style>
+      </head>
+
+      <body>
+        <div id="run"></div>
+        <script type="text/babel">
+          class Login extends React.Component {
+            constructor(props) {
+              super(props);
+              this.state = {
+                id: "",
+                password: "",
+                check: 0
+              };
+            }
+
+            render() {
+              return (
+                <div className="cont">
+                  <div className="demo">
+                    <div className="login">
+                      <div className="img">
+                        <img
+                          src="https://computer.cnu.ac.kr/_res/computer/img/common/img-symbol01.png"
+                          alt=""
+                          id="logo"
+                        />
+                        <img
+                          src="https://computer.cnu.ac.kr/_res/computer/img/common/img-symbol-txt01.png"
+                          alt=""
+                          id="letter"
+                        />
+                        <div id="project">알쓸신잡</div>
+                  </div>
+                  <div className="login__form">
+                    <form method="post" id="form">
+                      <div className="login__row">
+                        <input
+                          type="text"
+                          name="number1"
+                          id="id1"
+                          value={this.state.id}
+                          onChange={e => {
+                            this.setState({ id: e.target.value });
+                          }}
+                          className="login__input name"
+                          placeholder="Student Number"
+                        />
+                      </div>
+                      <div className="login__row">
+                        <input
+                          type="password"
+                          name="passwd"
+                          value={this.state.password}
+                          onChange={e => {
+                            this.setState({ password: e.target.value });
+                          }}
+                          className="login__input pass"
+                          placeholder="Password"
+                        />
+                      </div>
+                      <button
+                        variant="outline-primary"
+                        onClick={this.onChange}
+                        formAction="/api"
+                        className="login__submit"
+                      >
+                        로그인
+                      </button>
+                      <button
+                        variant="outline-primary"
+                        formAction="/html"
+                        className="login__sign"
+                      >
+                        회원가입
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+      }
+    </script>
+
+    <script type="text/babel">
+      ReactDOM.render(<Login />, document.querySelector("#run"));
+    </script>
+  </body>
+</html>

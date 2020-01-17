@@ -1,0 +1,266 @@
+<html>
+  <head>
+    <meta charset="uft-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/babel-standalone@6/babel.min.js"
+    ></script>
+
+    <title>충남대 알쓸신잡</title>
+    <link rel="icon" type="image/jpg" href="https://i.imgur.com/BqiTLfR.jpg" />
+
+    <style media="screen">
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      input,
+      button {
+        outline: medium;
+        border: medium;
+      }
+      .demo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -15rem;
+        margin-top: -26.5rem;
+        width: 30rem;
+        height: 45rem;
+      }
+      .signup {
+        position: relative;
+        height: 85%;
+        background: transparent;
+      }
+      .signup__form {
+        position: absolute;
+        top: 40%;
+        left: 0;
+        width: 100%;
+        height: 80%;
+        padding: 1.5rem 2.5rem;
+        text-align: center;
+        margin-top: 2.5rem;
+      }
+      .signup__row {
+        height: 5rem;
+        padding-top: 1rem;
+      }
+      .signup__input {
+        display: inline-block;
+        width: 25rem;
+        height: 100%;
+        padding-left: 1.5rem;
+        font-size: 1.5rem;
+        background-color: white;
+        color: rgb(0, 0, 0);
+        border-radius: 4px;
+        size: auto;
+      }
+
+      .signup__submit {
+        position: relative;
+        width: 100%;
+        height: 4rem;
+        margin: 2rem 0 0.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        background: #3374ff;
+        font-size: 1.5rem;
+        border-radius: 3rem;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .signup__submit:hover {
+        position: relative;
+        width: 100%;
+        height: 4rem;
+        margin: 2rem 0 0.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        background: #3374ff;
+        font-size: 1.5rem;
+        border-radius: 3rem;
+        cursor: pointer;
+        box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+      }
+
+      #logo {
+        display: block;
+        margin: 0 auto;
+        padding: 10;
+        width: 120;
+        height: 120;
+      }
+      #letter {
+        display: block;
+        margin: 0 auto;
+      }
+      #form {
+        height: 288;
+      }
+      .back {
+        position: relative;
+        height: 100%;
+        background-image: url("http://plus.cnu.ac.kr/Upl/_board/sub07_0703/sub07_0703_0_1578902542.jpg");
+        background-size: cover;
+        overflow: auto;
+        opacity: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sign_up"></div>
+    <script type="text/babel">
+      class Sign_up extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            check: "입력하세요",
+            insertID: "",
+            insertPW: "",
+            name: "",
+            checkID: [],
+            checkPW: [],
+            checkName: []
+          };
+        }
+        insert = e => {
+          if (
+            this.state.insertID.length < 9 ||
+            this.state.insertPW.length < 8
+          ) {
+            if (this.state.insertID.length < 9) {
+              alert("학번을 다시입력하세요!");
+            } else if (this.state.insertPW.length < 8) {
+              alert("비밀번호를 다시입력하세요!");
+            }
+          } else {
+            this.setState({
+              checkName: this.state.name.concat(this.state.checkName),
+              checkID: this.state.checkID.concat(this.state.insertID),
+              checkPW: this.state.checkID.concat(this.state.insertPW)
+            });
+          }
+        };
+        render() {
+          return (
+            <div className="cont">
+              <div className="back"></div>
+              <div className="demo">
+                <div className="signup">
+                  <div className="img">
+                    <img
+                      src="https://computer.cnu.ac.kr/_res/computer/img/common/img-symbol01.png"
+                      alt=""
+                      id="logo"
+                    />
+                    <img
+                      src="https://computer.cnu.ac.kr/_res/computer/img/common/img-symbol-txt01.png"
+                      alt=""
+                      id="letter"
+                    />
+                  </div>
+                  <div className="signup__form">
+                    <form action="/form_receive" method="post">
+                      <div className="signup__row">
+                        <select name="selector" className="signup__input dep">
+                          <option value="학과">Department</option>
+                          <option value="건축학과">건축학과</option>
+                          <option value="건축공학과">건축공학과</option>
+                          <option value="토목공학과">토목공학과</option>
+                          <option value="환경공학과">환경공학과</option>
+                          <option value="기계공학부">기계공학부</option>
+                          <option value="메카트로닉스공학과">
+                            메카트로닉스공학과
+                          </option>
+                          <option value="선박해양공학과">선박해양공학과</option>
+                          <option value="항공우주공학과">항공우주공학과</option>
+                          <option value="신소재공학과">신소재공학과</option>
+                          <option value="유기재료공학과">유기재료공학과</option>
+                          <option value="응용화학공학과">응용화학공학과</option>
+                          <option value="전기공학과">전기공학과</option>
+                          <option value="전자공학과">전자공학과</option>
+                          <option value="전파정보통신공학과">
+                            전파정보통신학과
+                          </option>
+                          <option value="컴퓨터융합학부">컴퓨터융합학부</option>
+                        </select>
+                      </div>
+
+                      <div className="signup__row">
+                        <input
+                          type="text"
+                          name="number1"
+                          value={this.state.insertID}
+                          onChange={e => {
+                            this.setState({ insertID: e.target.value });
+                          }}
+                          className="signup__input num"
+                          placeholder="Student Number"
+                        />
+                      </div>
+
+                      <div className="signup__row">
+                        <input
+                          type="text"
+                          name="name1"
+                          value={this.state.name}
+                          onChange={e => {
+                            this.setState({ name: e.target.value });
+                          }}
+                          className="signup__input name"
+                          placeholder="Username"
+                        />
+                      </div>
+
+                      <div className="signup__row">
+                        <input
+                          type="password"
+                          name="passwd"
+                          value={this.state.insertPW}
+                          onChange={e => {
+                            this.setState({ insertPW: e.target.value });
+                          }}
+                          className="signup__input pass"
+                          placeholder="Password"
+                        />
+                      </div>
+                      <button onClick={this.insert} className="signup__submit">
+                        회원가입
+                      </button>
+                    </form>
+                    <div>{this.state.checkID}</div>
+                    <div>{this.state.checkPW}</div>
+                    <div>{this.state.checkName}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+      }
+    </script>
+    <script type="text/babel">
+      ReactDOM.render(<Sign_up />, document.querySelector("#sign_up"));
+    </script>
+  </body>
+</html>
