@@ -230,7 +230,7 @@ body {
 .fc-unthemed td,
 .fc-unthemed th,
 .fc-unthemed thead {
-  border-color: black;
+  border-color: gray;
 }
 
 .fc-ltr .fc-h-event .fc-end-resizer,
